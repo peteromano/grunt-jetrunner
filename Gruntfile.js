@@ -8,6 +8,59 @@
 
 'use strict';
 
+var jetrunner = {
+
+    "config": {
+
+        "tests": [
+            { "/node_modules/jetrunner/example/test/adder_test.js":     "/node_modules/jetrunner/example/src/adder.js" },
+            { "/example/test/divider_test.js":                          "/example/src/divider.js" },
+            { "/example/test/multiplier_test.js":                       "/example/src/multiplier.js" }
+        ],
+
+        "runner": {
+            "styles": ["/node_modules/jetrunner/example/vendor/mocha/mocha.css"],
+            "scripts": [
+                "/node_modules/jetrunner/example/vendor/json3/lib/json3.min.js",
+                "/node_modules/jetrunner/example/vendor/mocha/mocha.js",
+                "/node_modules/jetrunner/example/vendor/sinon/sinon.js"
+            ]
+        },
+
+        "saucelabs": {
+            "driver": "saucelabs",
+            "reportFile": "node_modules/jetrunner/example/reports/saucelabs.tap",
+            "key": "1ebab6ce-c188-486f-86dd-3cc1957f2435",
+            "username": "peteromano",
+            "password": "j3trvnz3r",
+            "continueOnFail": true,
+            "maxParallel": 2,
+            "tunnel": {
+                "enabled": true,
+                "path": "/usr/local/opt/Sauce-Connect-latest/Sauce-Connect.jar",
+                "readyFile": "node_modules/jetrunner/example/log/sauce_connect.log",
+                "fastFailRegexps": ["favicon.ico"]
+            },
+            "browsers": [
+                // https://saucelabs.com/docs/platforms
+                {"browser": "googlechrome", "os": "OS X 10.8", "browser-version": ""},
+                {"browser": "safari", "os": "OS X 10.8", "browser-version": "6"},
+                {"browser": "firefox", "os": "Windows 8", "browser-version": "20"},
+                {"browser": "googlechrome", "os": "Windows 7", "browser-version": ""},
+                {"browser": "firefox", "os": "Windows 7", "browser-version": "20"},
+                {"browser": "iehta", "os": "Windows 7", "browser-version": "9"},
+                {"browser": "iehta", "os": "Windows 7", "browser-version": "8"},
+                {"browser": "googlechrome", "os": "Windows XP", "browser-version": ""},
+                {"browser": "firefox", "os": "Windows XP", "browser-version": "20"},
+                {"browser": "googlechrome", "os": "Linux", "browser-version": ""},
+                {"browser": "firefox", "os": "Linux", "browser-version": "20"}
+            ]
+        }
+
+    }
+
+};
+
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -29,23 +82,16 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    jetrunner: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
+    "jetrunner": {
+        "phantomjs": [{
+            "tests":    jetrunner.config.tests,
+            "runner":   jetrunner.config.runner
+        }],
+        "saucelabs": [{
+            "tests":    jetrunner.config.tests,
+            "runner":   jetrunner.config.runner,
+            "client":   jetrunner.config.saucelabs
+        }]
     },
 
     // Unit tests.

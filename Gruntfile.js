@@ -13,17 +13,18 @@ var jetrunner = {
     "config": {
 
         "tests": [
-            { "/node_modules/jetrunner/example/test/adder_test.js":     "/node_modules/jetrunner/example/src/adder.js" },
-            { "/example/test/divider_test.js":                          "/example/src/divider.js" },
-            { "/example/test/multiplier_test.js":                       "/example/src/multiplier.js" }
+            { "/example/test/adder_test.js":        "/example/src/adder.js" },
+            { "/example/test/divider_test.js":      "/example/src/divider.js" },
+            { "/example/test/multiplier_test.js":   "/example/src/multiplier.js" }
         ],
 
         "runner": {
-            "styles": ["/node_modules/jetrunner/example/vendor/mocha/mocha.css"],
+            "base": "node_modules/jetrunner",
+            "styles": ["/example/vendor/mocha/mocha.css"],
             "scripts": [
-                "/node_modules/jetrunner/example/vendor/json3/lib/json3.min.js",
-                "/node_modules/jetrunner/example/vendor/mocha/mocha.js",
-                "/node_modules/jetrunner/example/vendor/sinon/sinon.js"
+                "/example/vendor/json3/lib/json3.min.js",
+                "/example/vendor/mocha/mocha.js",
+                "/example/vendor/sinon/sinon.js"
             ]
         },
 

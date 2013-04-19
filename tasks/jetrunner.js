@@ -23,7 +23,7 @@ module.exports = function(grunt) {
             config;
 
         function next(code) {
-            stack.pop()(code);
+            stack.pop()(!code);
         }
 
         /**

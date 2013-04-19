@@ -1,6 +1,6 @@
 {
   "name": "grunt-jetrunner",
-  "description": "Grunt plugin for JetRUnner unit test server.",
+  "description": "Grunt plugin for JetRunner unit test server.",
   "version": "1.0.0",
   "homepage": "https://github.com/peteromano/grunt-jetrunner",
   "author": {

@@ -1,6 +1,6 @@
 # grunt-jetrunner
 
-> Grunt plugin for JetRUnner unit test server.
+> Grunt plugin for JetRunner unit test server.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
